@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :is_matching_login_user, only: [:edit, :update]
+  
   def index
     @user = current_user
     @users = User.all
@@ -33,7 +34,7 @@ class UsersController < ApplicationController
   def is_matching_login_user
     user = User.find(params[:id])
     unless user.id == current_user.id
-      redirect_to books_path
+      redirect_to user_path(current_user.id)
     end
   end
   
