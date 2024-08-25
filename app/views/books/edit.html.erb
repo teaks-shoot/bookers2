@@ -3,7 +3,12 @@
     <div class="col-md-5 mx-auto">
       <h1>Editing Book</h1>
       <% if @book.errors.any? %>
-        <h3> <%= @book.errors.count %> errors prohibited this obj from being saved: </h3>
+        <% if @book.errors.count == 1 %>
+          <h3> <%= @book.errors.count %> error prohibited this obj from being saved: </h3>
+        <% else %>
+          <h3> <%= @book.errors.count %> errors prohibited this obj from being saved: </h3>
+        <% end %>
+        
         <ul>
           <% @book.errors.full_messages.each do |message| %>
             <li><%= message %></li>
