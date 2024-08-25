@@ -1,2 +1,43 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="container">
+  <div class="row mt-3">
+    <div class="col-md-3">
+      <%= render 'books/infonew', user: @user %>
+    </div>
+
+    <div class="col-md-8 offset-md-1"> 
+      <h2>Books</h2>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th class="w-25"></th>
+            <th> Title </th>
+            <th> Opinion </th>
+            <th></th>
+          </tr>
+        </thead>
+        
+        <% @books.each do |book| %>
+          <tbody>
+            <tr>
+              <td>
+                <%= link_to user_path(book.user.id) do %>　<!-- 特定ユーザーの詳細ページに遷移（bookオブジェクトに関連付けられたユーザのid）-->
+                  <%= image_tag book.user.get_profile_image(100,100) %>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to book_path(book.id) do %>
+                  <%= book.title %>
+                <% end %>
+              </td>
+              <td>
+                <%= book.body %>
+              </td>
+            </tr>
+          </tbody>  
+        <% end %>
+        
+      </table>
+    </div>
+  
+  </div>
+</div>
